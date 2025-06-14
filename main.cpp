@@ -8,7 +8,10 @@
 //#include "GTASA_Structur.h"
 #include "Peds.h"
 #include "Weapons.h"
+#include "Vehicles.h"
 #include "Vectors.h"
+#include "RenderWare.h"
+
 
 MYMODCFG(net.rusjj.jpatch, JPatch, 1.0, RusJJ)
 
