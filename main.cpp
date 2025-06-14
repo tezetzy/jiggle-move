@@ -64,11 +64,41 @@ extern "C" void adadad(void)
     //asm("MOVT R1, #0x42F0");
 } // This one is used internally by myself. Helps me to get patched values.
 
-DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec2D)
+/*DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec2D)
 {
     float save = *ms_fTimeStep;
     *ms_fTimeStep = fMagic;
     ControlGunMove(self, vec2D);
+    *ms_fTimeStep = save;
+}
+*/
+DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec)
+{
+    CPed* ped = (CPed*)self;
+    if (!ped || ped->m_nPedType != PED_TYPE_PLAYER1)
+        return ControlGunMove(self, vec);
+
+    CWeapon* weapon = ped->m_pWeapon;
+    if (!weapon || weapon->m_nType >= 46)  // Hindari out-of-range
+        return ControlGunMove(self, vec);
+
+    CWeaponInfo* info = aWeaponInfo[weapon->m_nType];
+    if (!info) return ControlGunMove(self, vec);
+
+    // Ambil kondisi umum yang mungkin hanya berlaku untuk senjata yang pakai scope
+    bool isScoped = weapon->m_nType == WEAPON_SNIPERRIFLE || weapon->m_nType == WEAPON_RIFLE || weapon->m_nType == WEAPON_M4;
+
+    float save = *ms_fTimeStep;
+
+    // Misal kamu ingin TimeStep disesuaikan dengan semua senjata
+    // Kamu bisa atur kurva atau rasio tertentu
+    if (isScoped)
+        *ms_fTimeStep *= 0.8954f / fMagic;
+    else
+        *ms_fTimeStep *= 1.0f / fMagic;  // atau angka default seperti 1.0 atau 1.0f/fMagic
+
+    ControlGunMove(self, vec);
+
     *ms_fTimeStep = save;
 }
 uintptr_t SwimmingResistanceBack_BackTo;
@@ -117,10 +147,10 @@ extern "C" void OnModLoad()
         HOOKPLT(ControlGunMove, pGTASA + 0x66F9D0);
     }
     // Fix slow swimming speed
-    /*if(cfg->Bind("SwimmingSpeedFix", true, "Gameplay")->GetBool())
+    if(cfg->Bind("SwimmingSpeedFix", true, "Gameplay")->GetBool())
     {
         SwimmingResistanceBack_BackTo = pGTASA + 0x53BD3A + 0x1;
         HOOKPLT(ProcessSwimmingResistance, pGTASA + 0x66E584);
         aml->Redirect(pGTASA + 0x53BD30 + 0x1, (uintptr_t)SwimmingResistanceBack_inject);
-    }*/
+    }
 }
