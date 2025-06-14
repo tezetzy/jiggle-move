@@ -6,8 +6,8 @@
 #include <cctype>
 
 //#include "GTASA_Structur.h"
-#include "Peds.h"
 #include "Weapons.h"
+#include "Peds.h"
 #include "Vehicles.h"
 #include "Vectors.h"
 #include "RenderWare.h"
@@ -72,6 +72,7 @@ extern "C" void adadad(void)
     *ms_fTimeStep = save;
 }
 */
+/*
 DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec)
 {
     CPed* ped = (CPed*)self;
@@ -96,6 +97,25 @@ DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec)
         *ms_fTimeStep *= 0.8954f / fMagic;
     else
         *ms_fTimeStep *= 1.0f / fMagic;  // atau angka default seperti 1.0 atau 1.0f/fMagic
+
+    ControlGunMove(self, vec);
+
+    *ms_fTimeStep = save;
+}
+*/
+DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec)
+{
+    CPed* ped = (CPed*)self;
+    if (!ped || ped->pedType != PED_TYPE_PLAYER1) return ControlGunMove(self, vec);
+
+    CWeapon* weapon = ped->GetActiveWeapon();
+    if (!weapon || weapon->m_nType >= 46) return ControlGunMove(self, vec);
+
+    CWeaponInfo* info = &aWeaponInfo[weapon->m_nType];
+    if (!info) return ControlGunMove(self, vec);
+
+    float save = *ms_fTimeStep;
+    *ms_fTimeStep *= 0.8954f / fMagic;
 
     ControlGunMove(self, vec);
 
