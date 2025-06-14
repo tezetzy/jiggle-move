@@ -49,6 +49,13 @@ enum ePedType
 };*/
 struct CPed
 {
+    DWORD vtable;
+    DWORD m_dwUnk1;
+    ePedType m_nPedType;
+    DWORD m_nStatType;
+    CTaskManager* m_pTaskMgr;
+    CWeapon m_aWeapons[13];   // jika kamu pakai array
+    BYTE m_nActiveWeaponSlot;
     uint32_t vtable;              // 0x000
     char _pad1[0x20 - 0x4];       // padding sampai offset 0x20
     uint32_t pedType;             // 0x020
