@@ -117,10 +117,10 @@ extern "C" void OnModLoad()
         HOOKPLT(ControlGunMove, pGTASA + 0x66F9D0);
     }
     // Fix slow swimming speed
-    if(cfg->Bind("SwimmingSpeedFix", true, "Gameplay")->GetBool())
+    /*if(cfg->Bind("SwimmingSpeedFix", true, "Gameplay")->GetBool())
     {
         SwimmingResistanceBack_BackTo = pGTASA + 0x53BD3A + 0x1;
         HOOKPLT(ProcessSwimmingResistance, pGTASA + 0x66E584);
         aml->Redirect(pGTASA + 0x53BD30 + 0x1, (uintptr_t)SwimmingResistanceBack_inject);
-    }
+    }*/
 }
