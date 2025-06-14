@@ -43,6 +43,8 @@ struct CPed
     ePedType m_nPedType;
     DWORD m_nStatType;
     CTaskManager* m_pTaskMgr;
+    CWeapon m_aWeapons[13];   // jika kamu pakai array
+    BYTE m_nActiveWeaponSlot;
 };
 
 struct CPlayerPed : public CPed
@@ -50,4 +52,11 @@ struct CPlayerPed : public CPed
     DWORD m_nPlayerNumber;
     bool m_bCanBeDamaged;
     float m_fStamina;
+};
+    
+    // akses weapon aktif:
+    inline CWeapon* GetActiveWeapon()
+    {
+        return &m_aWeapons[m_nActiveWeaponSlot];
+    }
 };
