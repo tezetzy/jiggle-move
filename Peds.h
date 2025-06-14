@@ -55,14 +55,10 @@ struct CPed
     DWORD m_nStatType;
     CTaskManager* m_pTaskMgr;
     CWeapon m_aWeapons[13];   // jika kamu pakai array
-    BYTE m_nActiveWeaponSlot;
-    uint32_t vtable;              // 0x000
+    BYTE m_nActiveWeaponSlot;          // 0x000
     char _pad1[0x20 - 0x4];       // padding sampai offset 0x20
     uint32_t pedType;             // 0x020
-    char _pad2[0x318 - 0x24];     // padding sampai senjata
-
-    CWeapon m_aWeapons[13];       // 0x318
-    uint8_t m_nActiveWeaponSlot;  // 0x394
+    char _pad2[0x318 - 0x24];     // padding sampai senjata// 0x394
     char _pad3[3];                // align to 4-byte
 
     CWeapon* GetActiveWeapon()
@@ -76,11 +72,4 @@ struct CPlayerPed : public CPed
     DWORD m_nPlayerNumber;
     bool m_bCanBeDamaged;
     float m_fStamina;
-};
-    
-    // akses weapon aktif:
-    inline CWeapon* GetActiveWeapon()
-    {
-        return &m_aWeapons[m_nActiveWeaponSlot];
-    }
 };
