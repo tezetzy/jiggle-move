@@ -1,5 +1,6 @@
 #pragma once
 #include "Vectors.h"
+#include "Weapons.h"
 
 typedef unsigned int DWORD;
 typedef unsigned char BYTE;
