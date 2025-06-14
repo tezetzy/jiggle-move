@@ -3,6 +3,10 @@
 
 #include <cmath>
 #include <cstdint>
+
+typedef unsigned int DWORD;
+typedef unsigned char BYTE;
+
 /*
 OFFSET GTASA v2.00
 0x8B93FC - PlayerPed
@@ -34,6 +38,21 @@ OFFSET GTASA V1.80
 0x58 – Rotasi Y (float)
 0x5C – Rotasi Z (float)
 */
+struct CTaskManager {};
+struct CObject {};
+struct CWeaponInfo {};
+struct RwRaster {};
+struct RwObject {};
+struct CIntVector2D
+{
+    int x, y;
+};
+enum ePedType
+{
+    PED_TYPE_PLAYER1 = 0,
+    // Tambahkan lainnya jika perlu
+};
+
 //
 // CVector - 3D Vector
 //
@@ -83,10 +102,7 @@ struct CVector2D
 //
 // RwV3d - Raw 3D vector (RenderWare)
 //
-struct RwV3d
-{
-    float x, y, z;
-};
+struct RwV3d { float x, y, z; };
 
 //
 // CMatrix - Transformation matrix
