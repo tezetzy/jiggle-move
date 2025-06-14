@@ -13,6 +13,8 @@
 #include "RenderWare.h"
 #include "Types.h"
 #include "PlayerInfo.h"
+#define PLAYER_INFO ((CPlayerInfo*)0xB6F028)
+#define PLAYER_PED  ((CPed*)0xB6F5F0)
 
 
 MYMODCFG(net.rusjj.jpatch, JPatch, 1.0, RusJJ)
