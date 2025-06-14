@@ -5,8 +5,8 @@
 #include <vector>
 #include <cctype>
 
-#include "GTASA_Structur.h"
-
+//#include "GTASA_Structur.h"
+#include "stukk.h"
 MYMODCFG(net.rusjj.jpatch, JPatch, 1.0, RusJJ)
 
 
