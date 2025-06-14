@@ -6,7 +6,10 @@
 #include <cctype>
 
 //#include "GTASA_Structur.h"
-#include "stukk.h"
+#include "Peds.h"
+#include "Weapons.h"
+#include "Vectors.h"
+
 MYMODCFG(net.rusjj.jpatch, JPatch, 1.0, RusJJ)
 
 
