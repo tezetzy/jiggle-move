@@ -11,6 +11,8 @@
 #include "Vehicles.h"
 #include "Vectors.h"
 #include "RenderWare.h"
+#include "Types.h"
+#include "PlayerInfo.h"
 
 
 MYMODCFG(net.rusjj.jpatch, JPatch, 1.0, RusJJ)
