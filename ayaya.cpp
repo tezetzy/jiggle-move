@@ -13,10 +13,12 @@
 #include "RenderWare.h"
 #include "Types.h"
 #include "PlayerInfo.h"
+#include "CEntity.h"
 
 MYMODCFG(net.jaymods.sfx, SpreadFix, 1.0, Jayzxy)
 
-uintptr_t hGTASA;
+uintptr_t pGTASA;
+void* hGTASA;
 float *fPlayerAimRotRate
 DECL_HOOK(bool, FireInstantHit, CWeapon *self, CEntity *a2, CVector *a3, CVector *a4, CEntity *a5, CVector *a6, CVector *a7, int a8, int a9)
 {
@@ -26,6 +28,7 @@ DECL_HOOK(bool, FireInstantHit, CWeapon *self, CEntity *a2, CVector *a3, CVector
 extern "C" void OnModLoad()
 {
     logger->SetTag("SpreadFix");
+    pGTASA = aml->GetLib("libGTASA.so");
     hGTASA = dlopen("libGTASA.so", RTLD_LAZY);
     cfg->Bind("Author", "", "About")->SetString("Jayzxy"); cfg->ClearLast();
     cfg->Bind("IdeasFrom", "", "About")->SetString("MTA:SA Team, Peepo"); cfg->ClearLast();
