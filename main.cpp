@@ -57,13 +57,13 @@ void RedirectToRegister(unsigned char reg, uintptr_t addr, uintptr_t to)
     aml->Write(addr, (uintptr_t)hook, sizeof(hook));
 }
 
-extern "C" void adadad(void)
+/*extern "C" void adadad(void)
 {
-    asm("VMOV.F32 S0, #0.5");
+    /*asm("VMOV.F32 S0, #0.5");
     asm("LDR PC, [PC, #-0x4]");
-    asm("MOVT R1, #0x42F0");
+    asm("MOVT R1, #0x42F0");*/
 } // This one is used internally by myself. Helps me to get patched values.
-
+*/
 DECL_HOOKv(ControlGunMove, void* self, CVector2D* vec2D)
 {
     float save = *ms_fTimeStep;
