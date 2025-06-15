@@ -70,3 +70,14 @@ bool IsWeaponUsingScope(int weaponID)
 {
     return weaponID == WEAPON_SNIPERRIFLE || weaponID == WEAPON_RIFLE || weaponID == WEAPON_M4;
 }
+
+bool FireInstantHit(
+    CEntity* shooter,       // a2
+    CVector* origin,        // a3
+    CVector* target,        // a4
+    CEntity* victim,        // a5
+    CVector* victimPos,     // a6
+    CVector* shootDir,      // a7
+    int damage,             // a8
+    int weaponType          // a9
+);
