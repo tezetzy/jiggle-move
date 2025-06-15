@@ -20,7 +20,7 @@ MYMODCFG(net.jaymods.sfx, SpreadFix, 1.0, Jayzxy)
 uintptr_t pGTASA;
 void* hGTASA;
 float *fPlayerAimRotRate;
-bool FireInstantHit(
+/*bool FireInstantHit(
     CEntity* shooter,       // a2
     CVector* origin,        // a3
     CVector* target,        // a4
@@ -29,7 +29,7 @@ bool FireInstantHit(
     CVector* shootDir,      // a7
     int damage,             // a8
     int weaponType          // a9
-);
+);*/
 DECL_HOOK(bool, FireInstantHit, CWeapon *self, CEntity *a2, CVector *a3, CVector *a4, CEntity *a5, CVector *a6, CVector *a7, int a8, int a9)
 {
     *fPlayerAimRotRate = (rand() * 2.0f * M_PI) / (float)RAND_MAX;
