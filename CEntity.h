@@ -1,6 +1,5 @@
 #pragma once
 #include "Vectors.h"
-#include "CMatrix.h"
 
 // Enum jenis entity
 enum eEntityType : uint8_t
